@@ -72,7 +72,7 @@ fn main() -> std::io::Result<()> {
                     };
 
                     let issue = Issue {
-                        engineId: msg.package_id.repr,
+                        engineId: "clippy".to_string(),
                         ruleId: msg.message.code.as_ref().map_or_else(
                             || String::from("clippy"),
                             |diagnostic_code| diagnostic_code.code.clone(),
