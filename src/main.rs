@@ -33,6 +33,7 @@ struct Issue {
     ruleId: String,
     primaryLocation: Location,
     severity: String,
+    r#type: String,
 }
 
 fn main() -> std::io::Result<()> {
@@ -74,7 +75,8 @@ fn main() -> std::io::Result<()> {
                         engineId: msg.package_id.repr,
                         ruleId: msg.message.code.unwrap().code,
                         primaryLocation: primary_location,
-                        severity: "HIGH".to_string(),
+                        severity: "MINOR".to_string(),
+                        r#type: "CODE_SMELL".to_string(),
                     };
 
                     issues.issues.push(issue);
