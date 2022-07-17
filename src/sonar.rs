@@ -1,11 +1,11 @@
 use serde::Serialize;
 
-#[derive(Serialize)]
+#[derive(Serialize, Hash, Clone)]
 pub struct IssuesList {
     pub issues: Vec<Issue>,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Hash, Clone, Eq, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Issue {
     pub engine_id: String,
@@ -18,7 +18,7 @@ pub struct Issue {
     pub secondary_locations: Option<Vec<Location>>,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Hash, Clone, Eq, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Location {
     pub message: String,
@@ -28,7 +28,7 @@ pub struct Location {
     pub text_range: Option<TextRange>,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Hash, Clone, Eq, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct TextRange {
     pub start_line: usize,
@@ -41,7 +41,7 @@ pub struct TextRange {
     pub end_column: Option<usize>,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Hash, Clone, Eq, PartialEq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Type {
     Bug,
@@ -49,7 +49,7 @@ pub enum Type {
     CodeSmell,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Hash, Clone, Eq, PartialEq)]
 #[serde(rename_all = "UPPERCASE")]
 pub enum Severity {
     Blocker,

@@ -1,5 +1,4 @@
-use cargo_metadata::Message;
-
+use itertools::Itertools;
 use std::fs;
 use std::process::{Command, Stdio};
 
@@ -33,6 +32,7 @@ fn main() -> std::io::Result<()> {
         };
     }
 
+    issues.issues = issues.issues.into_iter().unique().collect();
     let j = serde_json::to_string(&issues)?;
 
     fs::write("sonar.json", j).expect("Unable to write file");
