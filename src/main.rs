@@ -73,7 +73,10 @@ fn main() -> std::io::Result<()> {
 
                     let issue = Issue {
                         engineId: msg.package_id.repr,
-                        ruleId: msg.message.code.unwrap().code,
+                        ruleId: msg.message.code.as_ref().map_or_else(
+                            || String::from("clippy"),
+                            |diagnostic_code| diagnostic_code.code.clone(),
+                        ),
                         primaryLocation: primary_location,
                         severity: "MINOR".to_string(),
                         r#type: "CODE_SMELL".to_string(),
